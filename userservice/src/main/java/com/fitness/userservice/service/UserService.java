@@ -6,10 +6,12 @@ import com.fitness.userservice.mapper.UserMapper;
 import com.fitness.userservice.model.User;
 import com.fitness.userservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
@@ -34,5 +36,10 @@ public class UserService {
 
         return userMapper.toResponse(savedUser);
 
+    }
+
+    public Boolean validateUser(String userId) {
+        log.info("Validating user with ID: " + userId);
+        return userRepository.existsById(userId);
     }
 }

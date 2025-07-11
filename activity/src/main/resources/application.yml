@@ -1,6 +1,6 @@
 spring:
   application:
-    name: activity
+    name: activity-service
   data:
     mongodb:
       username: canberk
@@ -9,6 +9,10 @@ spring:
       port: 27017
       database: fitnessactivity
       authentication-database: admin
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
 
 server:
   port: 8082

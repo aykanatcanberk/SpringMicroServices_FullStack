@@ -1,22 +1,34 @@
 package com.fitness.activity.service;
 
+import com.fitness.activity.client.UserClient;
 import com.fitness.activity.dto.ActivityRequest;
 import com.fitness.activity.dto.ActivityResponse;
 import com.fitness.activity.mapper.ActivityMapper;
 import com.fitness.activity.model.Activity;
 import com.fitness.activity.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ActivityService {
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper;
+    private final UserClient userClient;
 
     public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+
+        log.info("Validating user with ID: " + activityRequest.getUserId());
+
+        Boolean userExists = userClient.validateUser(activityRequest.getUserId());
+        if (!Boolean.TRUE.equals(userExists)) {
+            throw new IllegalArgumentException("User not found: " + activityRequest.getUserId());
+        }
+
         Activity activity = Activity.builder()
                 .userId(activityRequest.getUserId())
                 .type(activityRequest.getType())
