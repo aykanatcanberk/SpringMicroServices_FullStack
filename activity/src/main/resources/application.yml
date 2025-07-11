@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: activity
+  data:
+    mongodb:
+      username: canberk
+      password: canberk
+      host: localhost
+      port: 27017
+      database: fitnessactivity
+      authentication-database: admin
+
+server:
+  port: 8082

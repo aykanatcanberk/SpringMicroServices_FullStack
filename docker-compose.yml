@@ -13,6 +13,16 @@ services:
     networks:
       - microservices-net
     restart: unless-stopped
+  mongodb:
+    image: mongo
+    container_name: mongo_ms
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=canberk
+      - MONGO_INITDB_ROOT_PASSWORD=canberk
 
 networks:
   microservices-net:
@@ -20,3 +30,4 @@ networks:
 
 volumes:
   postgres:
+  mongo:
