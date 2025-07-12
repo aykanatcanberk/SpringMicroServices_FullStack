@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   postgresql:
     container_name: postgre_ms
@@ -13,16 +15,33 @@ services:
     networks:
       - microservices-net
     restart: unless-stopped
+
   mongodb:
     image: mongo
     container_name: mongo_ms
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongo:/data
     environment:
       - MONGO_INITDB_ROOT_USERNAME=canberk
       - MONGO_INITDB_ROOT_PASSWORD=canberk
+    networks:
+      - microservices-net
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq_ms
+    ports:
+      - "5672:5672"   # AMQP port
+      - "15672:15672" # Web management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+    networks:
+      - microservices-net
+    restart: unless-stopped
 
 networks:
   microservices-net:
