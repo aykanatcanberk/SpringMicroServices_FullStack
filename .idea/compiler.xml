@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="discovery" />
+        <module name="gateway" />
         <module name="configserver" />
       </profile>
       <profile name="Annotation profile for aiservice" enabled="true">
@@ -32,6 +33,7 @@
       <module name="configserver" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="userservice" options="-parameters" />
     </option>
   </component>
