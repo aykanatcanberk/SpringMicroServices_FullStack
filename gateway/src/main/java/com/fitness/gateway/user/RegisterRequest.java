@@ -1,13 +1,9 @@
-package com.fitness.userservice.dto;
+package com.fitness.gateway.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
-
-import java.time.LocalDateTime;
 
 @Data
 public class RegisterRequest {
@@ -28,3 +24,4 @@ public class RegisterRequest {
     @NotBlank(message = "Lastname is required")
     private String lastName;
 }
+

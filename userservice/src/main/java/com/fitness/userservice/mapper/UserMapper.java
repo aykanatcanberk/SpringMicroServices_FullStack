@@ -11,6 +11,7 @@ public class UserMapper {
     public  UserResponse toResponse(User user) {
         UserResponse response = new UserResponse();
         response.setId(user.getId());
+        response.setKeycloakId(user.getKeycloakId());
         response.setEmail(user.getEmail());
         response.setPassword(user.getPassword());
         response.setFirstName(user.getFirstName());
@@ -24,6 +25,7 @@ public class UserMapper {
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
+        user.setKeycloakId(request.getKeycloakId());
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
         return user;

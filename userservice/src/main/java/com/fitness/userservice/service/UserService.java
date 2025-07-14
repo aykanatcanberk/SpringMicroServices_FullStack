@@ -28,7 +28,8 @@ public class UserService {
     public UserResponse register(RegisterRequest request) {
 
         if(userRepository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already exists");
+            User existingUser = userRepository.findByEmail(request.getEmail());
+            return userMapper.toResponse(existingUser);
         }
 
         User user = userMapper.toEntity(request);
@@ -40,6 +41,6 @@ public class UserService {
 
     public Boolean validateUser(String userId) {
         log.info("Validating user with ID: " + userId);
-        return userRepository.existsById(userId);
+        return userRepository.existsKeycloakById(userId);
     }
 }
